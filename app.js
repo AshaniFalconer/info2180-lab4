@@ -4,10 +4,12 @@ window.onload = function() {
 
    button.addEventListener("click", function() {
 
-       fetch("superheroes.php")
+       const query = document.getElementById("search-field").value;
+
+       fetch("superheroes.php?query=" + encodeURIComponent(query))
            .then(response => response.text())
            .then(data => {
-               alert(data);
+               document.getElementById("result").innerHTML = data;
            })
            .catch(error => {
                console.log(error);
